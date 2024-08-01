@@ -8,6 +8,8 @@ Prerequisites
     PHP Application: Ensure you have your PHP application files ready. This typically includes .php files and any other necessary resources (e.g., CSS, JavaScript, images).
 
 Steps to Run Your PHP Application
+
+
 2. Start XAMPP
 
 3. Place Your PHP Files in htdocs  as the root directory for your web server and add your PHP Application
