@@ -1,6 +1,8 @@
 Running a PHP Application Using XAMPP
 
 This README provides instructions on how to set up and run a PHP application using XAMPP.
+
+
 Prerequisites:
 -Make sure you have XAMPP installed on your computer
 -Ensure you have your PHP application files ready
