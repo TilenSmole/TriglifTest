@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM SUBMITTER</title>
+    <link rel="stylesheet" href="styling.css">
+</head>
+
+<body>
+    <!--  intro to the page-->
+
+    <div id="intro">
+        <h1>Welcome to form submitter!</h1>
+        <h3>your number 1 way to submit forms online!</h3>
+    </div>
+
+
+
+    <form id="myForm">
+        <!-- this is the form of the page, with two inputs and a submit button-->
+        <div class="form-container">
+            <div class="userInput">
+
+
+                <div style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+                    <label for="subject">Subject:</label>
+                    <input type="text" id="subject" name="subject">
+                </div>
+
+                <div style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+                    <label for="message">Message:</label>
+                    <input type="text" id="message" name="message">
+                </div>
+
+
+
+            </div>
+
+            <button type="submit" id="submit">Submit</button>
+        </div>
+
+
+
+        <script>
+            //when we click a button, listeners calls the API with the POST request
+            const form = document.getElementById('myForm');
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                if( document.getElementById('subject').value && document.getElementById('message').value){
+                    const formData = {
+                    "subject": document.getElementById('subject').value,
+                    "message": document.getElementById('message').value
+                };
+
+                fetch('server/post.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok ' + response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        //if we get statue true, we will execute another API call to get all the data from the API
+                        if (data.status === true) {
+                            var theDiv = document.getElementById("values");
+                            theDiv.innerHTML = ''
+                            fetch("server/get.php")
+                                .then((response) => {
+                                    if (!response.ok) {
+                                        throw new Error("Network response was not ok " + response.statusText);
+                                    }
+                                    return response.json();
+                                })
+                                .then((data) => {
+                                    //this part of codes created elements from the API call that will be put into the HTML
+                                    var display = document.getElementById("display");
+                                    display.style.display = "inline";
+                                    for (const item of data) {
+                                        console.log(item);
+                                        var content = document.createElement("p");
+                                        content.innerHTML += "🎇  ";
+                                        content.innerHTML += JSON.stringify(item);
+                                        content.className = "content-class";
+                                        theDiv.appendChild(content);
+                                    }
+
+                                })
+                                .catch((error) => {
+                                    console.error("There was a problem with the fetch operation:", error);
+                                });
+                        }
+
+                        console.log(data);
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+                }
+                else{
+                    alert("Please fill out the form!");
+                }
+
+
+               
+            });
+        </script>
+    </form>
+
+    <!-- this is the part where we will display elements from the GET request-->
+    <div id="display">
+        <h4>All submitted items: </h4>
+        <div id="values"></div>
+    </div>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

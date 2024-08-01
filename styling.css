@@ -1,0 +1,95 @@
+
+
+#myForm{
+    margin-top: 70px;
+
+}
+
+
+
+label, input{
+    font-size: 20px;
+}
+
+
+
+
+
+h1{
+    font-size: 50px;
+}
+
+h3, h4, .content-class {
+    font-size: 25px; 
+}
+ 
+h4{
+    margin-top: 50px;
+}
+
+#values, h4, #intro, #myForm{
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+}
+
+
+#intro, #myForm{
+    margin-top: 30px;
+
+}
+
+
+body{
+    background-color: rgb(169, 225, 225);
+}
+
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    max-width: 600px; 
+    margin: 0 auto; 
+
+}
+
+
+
+
+
+.userInput input {
+    padding: 8px;
+    justify-content: right;
+    height: 20px;
+    border-radius: 25px;
+    padding: 10px 20px 10px 20px;
+    margin-top: 10px;
+    margin-right: 100px;
+}
+
+label {
+    display: flex;
+    width: 80px;
+  }
+
+#submit {
+    grid-column: 2; 
+    align-self: center; /* Center the button vertically in its grid cell */
+    padding: 20px 30px;
+    border: none;
+    background-color: rgb(0, 47, 255);
+    color: white;
+    cursor: pointer;
+    border-radius: 20px;
+color: wheat;
+font-size: 20px;
+}
+
+#submit:hover {
+    background-color: rgb(31, 49, 131);
+}
+
+
+#display{
+    display: none;
+}
+
